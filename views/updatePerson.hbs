@@ -1,0 +1,118 @@
+{{> header}}
+    {{> navbar}}
+    {{> navbarleft}}
+
+    <body onload="getPCed()">
+        
+<div class="container" id="main">
+    <div class="row">
+        <div class="col-md-12" style="font-size: 30pt;"> 
+            <label>Actualizar Personas</label>
+        </div> 
+
+        <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Datos Personales</div>
+
+                        </div>  
+                        
+                        <div class="panel-body" >
+                            <form id="signupform" class="form-horizontal" role="form" action="/updateP" method="POST">
+                                
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cedula" class="col-md-3 control-label">Cedula</label>
+                                    <div class="col-md-9">
+                                        <select style="height: 33px;" class="form-control" id = "cedula" name = "cedula" onchange="getPId()">
+                                            <option value="#"  selected disabled>--Selecione Opcion--</option>
+                                        </select>
+                                    </div>
+                                </div> 
+                                   
+                                <div class="form-group">
+                                    <label for="firstname" class="col-md-3 control-label">Nombre</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="nombre" name="firstname" placeholder="Nombre" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname" class="col-md-3 control-label">Apellido</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="apellido" name="lastname" placeholder="Apellido" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edad" class="col-md-3 control-label">Edad</label>
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" id="edad" name="edad" placeholder="Edad" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipoper" class="col-md-3 control-label">Tipo Persona</label>
+                                    <div class="col-md-9">
+                                        <select style="height: 33px;" class="form-control" id = "tipoper" name = "tipoper" disabled>
+                                            <option value="#"  selected disabled>--Selecione Opcion--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label for="tipoper" class="col-md-3 control-label"># Casa</label>
+                                    <div class="col-md-9">
+                                        <select style="height: 33px;" class="form-control" id="numcasa" name = "numcasa" disabled> 
+                                            <option value="#"  selected disabled>--Selecione Opcion--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechacom" class="col-md-3 control-label">Fecha Entrada</label>
+                                    <div class="col-md-9">
+                                        <input type="date" class="form-control" id="fechaen" name="fechaen" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechacom" class="col-md-3 control-label">Fecha Salida</label>
+                                    <div class="col-md-9">
+                                        <input type="date" class="form-control" id="fechater" name="fechater" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechacom" class="col-md-3 control-label">Estado</label>
+                                    <div class="col-md-9">
+                                        <select style="height: 33px;" class="form-control"id="estado" name="estado" disabled> 
+                                            <option value="#"  selected disabled>--Selecione Opcion--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-success" disabled><i class="icon-hand-right"></i> &nbsp Actualizar</button> 
+                                    </div>
+                                </div>                  
+    </div>
+
+</div>
+   <div class="row">
+        <div style="font-size: 20pt;box-sizing: border-box;display: inline-block; margin-left: 150px; text-align: center;" >
+            <div>
+                <label> Captura de Imagen <i class="fa fa-camera"></i></label>
+            </div>
+            <div style="border: 1px solid black; background-color: #e0e0e0; padding: 2px; ">
+                <video src="" id="video" width="450" height="330" style="margin-top: 10px;margin-bottom: 1px;"></video>
+                <div class="table-responsive" style=" background-color: #57575705; padding: 3px; height: 100px; display: flex; max-width: 450px;"> 
+                    <table  id="carrusel" class="botom:0px">
+
+                    </table>
+                </div>
+            </div>
+            <button id="boton" type="button" class="btn btn-primary" onclick="powercam()" disabled><i class="icon-hand-right"  ></i> &nbsp Prender Camara</button> 
+            <button id="boton1" type="button" class="btn btn-success" onclick="takepicture()" disabled><i class="icon-hand-right"  ></i> &nbsp Capturar</button> 
+        </div> 
+    </div>
+    <input type="text" id="arregloFotos" name="arregloFotos" style="display: none;">
+ </form>
+{{> footer}}

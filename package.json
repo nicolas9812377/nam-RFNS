@@ -1,0 +1,34 @@
+{
+    "name": "proyectog",
+    "version": "1.0.0",
+    "description": "Sistema control de acceso con reconocimiento facial",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js",
+        "nodemon": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nicolas9812377/PI_IHM-ML-IS.git"
+    },
+    "author": "Nicolas Carrasco - Maria Jose Jacome - Alisson Mendoza",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nicolas9812377/PI_IHM-ML-IS/issues"
+    },
+    "homepage": "https://github.com/nicolas9812377/PI_IHM-ML-IS#readme",
+    "dependencies": {
+        "axios": "^0.19.2",
+        "bcrypt": "^5.0.0",
+        "body-parser": "^1.19.0",
+        "connect-flash": "^0.1.1",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "hbs": "^4.1.1",
+        "pg": "^8.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
+}
