@@ -141,10 +141,9 @@ const updateP = async(req, res) => {
     if (arreglo[0] === '') {
         return res.redirect('/updatePerson');
     }
-    const r = await pool.query('insert into fotos values($1,$2,$3)', [sidp.rows[0].id_persona, tipoper, arreglo[0]]);
-    for (let i = 1; i < arreglo.length; i++) {
-        const resp = await pool.query('insert into fotos values($1,$2,$3)', [sidp.rows[0].id_persona, tipoper, `data:image/png;base64,${arreglo[i]}`]);
-    };
+    const nombre = encodeURI(firstname + ' ' + lastname)
+    axios.get(`https://nam-reconocimientofacial.azurewebsites.net/updatePhoto?nombre=${nombre}&cedula=${cedula}&foto=${arreglo[0]}`)
+    const r = await pool.query('update fotos set foto = $1 where id_persona = $2', [arreglo[0], sidp.rows[0].id_persona]);
 
     return res.redirect('/updatePerson');
 
