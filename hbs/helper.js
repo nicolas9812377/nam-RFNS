@@ -46,7 +46,7 @@ hsb.registerHelper('capitalizar', (text) => {
 
 hsb.registerHelper('ifm', (text) => {
     let resp = '';
-    if (text === 'Registrado Exitosamente') {
+    if (text === 'Registrado Exitosamente' || text === 'Actualizado Exitosamente') {
         resp = `<div id="login-alert" class="alert alert-success col-sm-12"> ${text} </div>  `;
     } else if (text === 'Correo o Contraseña no validos' || text === 'Usuario ya registrado' || text === 'Ha ocurrido un error intente nuevamente' || text === 'Alicuota ya registrada') {
         resp = `<div id="login-alert" class="alert alert-danger col-sm-12">${text} </div>  `;
