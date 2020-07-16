@@ -141,8 +141,9 @@ const updateP = async(req, res) => {
     if (arreglo[0] === '') {
         return res.redirect('/updatePerson');
     }
-    const nombre = encodeURI(firstname + ' ' + lastname)
-    axios.post(`https://nam-reconocimientofacial.azurewebsites.net/updatePhoto`, { nombre, cedula, foto: arreglo[0] }).catch(console.log)
+    const nombre = `${firstname} ${lastname}`
+        //axios.post('http://localhost:5000/updatePhoto', { nombre, cedula, foto: arreglo[0] }).catch(console.log)
+    axios.post('https://nam-reconocimientofacial.azurewebsites.net/updatePhoto', { nombre, cedula, foto: arreglo[0] }).catch(console.log)
 
     const r = await pool.query('update fotos set foto = $1 where id_persona = $2', [arreglo[0], sidp.rows[0].id_persona]);
     return res.render('updatePerson', {
