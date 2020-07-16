@@ -8,11 +8,11 @@ config = {
 
 
 const pool = new Pool({
-    host: 'ec2-54-161-208-31.compute-1.amazonaws.com',
+    host: 'ec2-54-243-67-199.compute-1.amazonaws.com',
     port: 5432,
-    user: 'hrtidddsbywysa',
-    password: 'fcf775d2a98b8101d678e90e31609d6e7a5a3bf0ea737fa72d4e6f7c0ab97e27',
-    database: 'dbeu6t89ksufg',
+    user: 'bnigxbesqdmumt',
+    password: '982012ffe7e7b20b27361f25a196f1b7e4a34225d961e8267053447ab35ecc6f',
+    database: 'df1k5ot3fn3idt',
     ssl: {
         rejectUnauthorized: false
     }
