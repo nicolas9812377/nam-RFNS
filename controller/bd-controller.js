@@ -142,7 +142,8 @@ const updateP = async(req, res) => {
         return res.redirect('/updatePerson');
     }
     const nombre = encodeURI(firstname + ' ' + lastname)
-    axios.get(`https://nam-reconocimientofacial.azurewebsites.net/updatePhoto?nombre=${nombre}&cedula=${cedula}&foto=${arreglo[0]}`)
+    axios.post(`https://nam-reconocimientofacial.azurewebsites.net/updatePhoto`, { nombre, cedula, foto: arreglo[0] })
+
     const r = await pool.query('update fotos set foto = $1 where id_persona = $2', [arreglo[0], sidp.rows[0].id_persona]);
     return res.render('updatePerson', {
         name: 'Conjunto Residencial "Bosques de Quitumbe IV"',
