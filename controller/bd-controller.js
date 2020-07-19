@@ -1,13 +1,18 @@
 const pool = require('../config/bd_config').pool;
 const bcrypt = require('bcrypt');
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
+const url = require('url');
 const loginA = async(req, res) => {
     let { username, password } = req.body;
-
     const resp = await pool.query('select * from administrador where username_administrador = $1', [username]);
     if (resp.rowCount > 0 && bcrypt.compareSync(password, resp.rows[0].clave_administrador)) {
         let { cedula_administrador, nombre_administrador, apellido_administrador, username_administrador } = resp.rows[0];
-        req.session.person = { cedula_administrador, nombre_administrador, apellido_administrador, username_administrador };
+        // Generar el token
+        let token = jwt.sign({
+            usuario: { cedula_administrador, nombre_administrador, apellido_administrador, username_administrador }
+        }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
+        req.session.token = token
         return res.redirect('/home');
 
     }
@@ -141,8 +146,8 @@ const updateP = async(req, res) => {
     if (arreglo[0] === '') {
         return res.redirect('/updatePerson');
     }
-    const nombre = `${firstname} ${lastname}`
-        //axios.post('http://localhost:5000/updatePhoto', { nombre, cedula, foto: arreglo[0] }).catch(console.log)
+    const nombre = `${firstname} ${lastname}`;
+    //axios.post('http://localhost:5000/updatePhoto', { nombre, cedula, foto: arreglo[0] }).catch(console.log)
     axios.post('https://nam-reconocimientofacial.azurewebsites.net/updatePhoto', { nombre, cedula, foto: arreglo[0] }).catch(console.log)
 
     const r = await pool.query('update fotos set foto = $1 where id_persona = $2', [arreglo[0], sidp.rows[0].id_persona]);

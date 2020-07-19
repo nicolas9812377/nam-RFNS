@@ -1,53 +1,57 @@
-<div class="nav-side-menu">
-    <div class="brand">MENU</div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-    <div class="menu-list">
-        <ul id="menu-content" class="menu-content collapse out">
-            <li>
-                <a href="/home">
-                    <i class="fa fa-home"></i> Inicio
-                </a>
-            </li>
-            <li>
-                <a href="/updateA">
-                    <i class="fa fa-spinner"></i> Actualizar Administrador
-                </a>
-            </li>
-            <li>
-                <a href="/updateRA">
-                    <i class="fa fa-spinner"></i> Registro Administrador
-                </a>
-            </li>
-            <li>
-                <a href="/updateD">
-                    <i class="fa fa-spinner"></i> Actualizar Datos
-                </a>
-            </li>
-            <li>
-                <a href="/registerPerson">
-                    <i class="fa fa-pencil-square-o"></i> Registro Personas
-                </a>
-            </li>
-            <li>
-                <a href="/registerPayments">
-                    <i class="fa fa-pencil-square-o"></i> Registro Alicuotas
-                </a>
-            </li>
-             <li>
-                <a href="/updatePerson">
-                    <i class="fa fa-users fa-lg"></i> Actualizar Personas
-                </a>
-            </li>
-            <li>
-                <a href="/logout">
-                    <i class="fa fa-times fa-lg"></i> Cerrar Session
-                </a>
-            </li>
-         
-        </ul>
-        
-
-    </div>
-</div>
-
- 
+ <div id="wrapper">
+        <div class="overlay"></div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+                <ul class="nav sidebar-nav">
+                    <li class="sidebar-brand">
+                            <a href="#">
+                            Menu
+                            </a>
+                    </li>
+                    <li>
+                        <a href="/home">
+                            <i class="fa fa-home"></i> Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/updateA">
+                            <i class="fa fa-refresh"></i> Actualizar Administrador
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/updateRA">
+                            <i class="fa fa-pencil-square-o"></i> Registro Administrador
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/updateD">
+                            <i class="fa fa-refresh"></i> Actualizar Datos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/registerPerson">
+                            <i class="fa fa-pencil-square-o"></i> Registro Personas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/registerPayments">
+                            <i class="fa fa-pencil-square-o"></i> Registro Alicuotas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/updatePerson">
+                            <i class="fa fa-users fa-lg"></i> Actualizar Personas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-times fa-lg"></i> Cerrar Session
+                        </a>
+                    </li>
+                </ul>
+        </nav>
+    <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+            </button>

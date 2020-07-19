@@ -21,5 +21,18 @@ const pool = new Pool({
 const queryG = async(table) => {
     let resp = await pool.query(`select * from ${table}`)
     return resp.rows;
-}
+};
+// =============================================
+// Vencimiento del Token
+// =============================================
+// 60 segundos
+// 60 minutos
+// 24 horas
+// 30 días
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+// =============================================
+// SEED de Autenticación
+// =============================================
+process.env.SEED = process.env.SEED || 'seed-desarrollo';
 module.exports = { pool, queryG }

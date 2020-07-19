@@ -13,18 +13,18 @@ hsb.registerPartials(__dirname + '/views/partials');
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-
 app.use(session({
-    secret: '2C44-4D44-WppQ38S',
-    resave: true,
-    saveUninitialized: false
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
 }));
+
 app.use(bodyParser.json({ limit: '50mb' }));
 
 require('./config/routes.js')(app);
 
-const { loginA, registerA, updateA, registerRA, updateD, registerP, updateP, registerC, registerPhotos } = require('./controller/bd-controller')
-
+const { loginA, registerA, updateA, registerRA, updateD, registerP, updateP, registerC, registerPhotos } = require('./controller/bd-controller');
+//Peticiones de Registro
 app.post('/', loginA);
 app.post('/admin', registerA);
 app.post('/registerRA', registerRA);
