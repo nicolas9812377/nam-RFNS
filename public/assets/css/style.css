@@ -121,6 +121,7 @@ html {
     line-height: 20px;
     display: inline-block;
     width: 100%;
+    margin-left: 12px;
 }
 
 .sidebar-nav li:before {
@@ -493,10 +494,6 @@ h5 {
 }
 
 .oauth-buttons {
-    text-align: center;
-}
-
-.row {
     text-align: center;
 }
 
