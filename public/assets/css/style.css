@@ -85,7 +85,7 @@ html {
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 220px;
+    width: 240px;
 }
 
 #page-content-wrapper {
@@ -95,7 +95,7 @@ html {
 
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
-    margin-right: -220px;
+    margin-right: -240px;
 }
 
 
@@ -121,7 +121,7 @@ html {
     line-height: 20px;
     display: inline-block;
     width: 100%;
-    margin-left: 12px;
+    margin-left: 11px;
 }
 
 .sidebar-nav li:before {
