@@ -3,6 +3,7 @@ const app = express();
 const hsb = require('hbs');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
+//quitar en el proximo push
 const flash = require('connect-flash');
 const session = require('express-session');
 

@@ -1,11 +1,115 @@
 {{> header}}
     {{> navbar}}
     {{> navbarleft}}
-<div class="container" id="main" style="width: 100%; margin-top: -30px;">
-    <div class="row">
-        <div class="col-md-12" style="font-size: 22pt;">
+
+<div class="container" id="main" style="width: 100%; margin-top: -70px;">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-12" style="font-size: 22pt; text-align: center;">
             <label>Bienvenido Administrador {{ capitalizar username}}</label>
         </div>
     </div>
+    <div class="row" style="margin-top: 30px;">
+        <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" style="width: 50%;">
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-2" data-slide-to="1"></li>
+        <li data-target="#carousel-example-2" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div class="view">
+                <img class="d-block w-100" src="assets/images/conjunto1.jpeg" width="870" height="420" alt="First slide">
+                <div class="mask rgba-black-light"></div>
+            </div>
+            <div class="carousel-caption">
+                <h3 class="h3-responsive" ></h3>
+                <p style="color: black;">LOGO DEL CONJUNTO</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <!--Mask color-->
+            <div class="view">
+                <img class="d-block w-100" src="assets/images/conjunto2.jpeg" width="870" height="420" alt="Second slide">
+                <div class="mask rgba-black-strong"></div>
+            </div>
+            <div class="carousel-caption">
+                <h3 class="h3-responsive" >VISTA</h3>
+                <p>VISTA DENTRO DEL CONJUNTO</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <!--Mask color-->
+            <div class="view">
+                <img class="d-block w-100" src="assets/images/conjunto3.jpeg" width="870" height="420" alt="Third slide">
+                <div class="mask rgba-black-slight"></div>
+            </div>
+            <div class="carousel-caption">
+                <h3 class="h3-responsive">VISTA</h3>
+                <p>VISTA POR FUERA</p>
+            </div>
+        </div>
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+        </div>
+<!--/.Carousel Wrapper-->       
+    
+    
+    <div class="col-6" >
+        <form>
+			<div id="contact-form" class="form-container" data-form-container style="width: 100%;margin-top: 0px;">
+			<div class="row">
+				<div class="form-title" style="margin-left: 38%;margin-right: 38%;">
+					<span>Contactenos</span>
+				</div>
+			</div>
+			<div class="input-container">
+				<div class="row">
+					<span class="req-input" >
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input Your First and Last Name."> </span>
+						<input type="text" data-min-length="8" placeholder="Nombres">
+					</span>
+				</div>
+				<div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Email."> </span>
+						<input type="email" placeholder="Email">
+					</span>
+				</div>
+				<div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Input Your Phone Number."> </span>
+						<input type="tel" placeholder="Numero Telefono">
+					</span>
+				</div>
+				<div class="row">
+					<span class="req-input message-box">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Please Include a Message."> </span>
+						<textarea type="textarea" data-min-length="10" placeholder="Mensaje"></textarea>
+				</div>
+				<div class="row submit-row">
+					<button type="button" class="btn btn-block submit-form">Submit</button>
+				</div>
+			</div>
+			</div>
+			</form>
+    </div>
+
+    </div> 
+    </div>
 </div>
+
+
 {{> footer}}
