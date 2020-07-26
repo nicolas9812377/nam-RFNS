@@ -1,0 +1,100 @@
+{{> header}}
+    {{> navbar}}
+    {{> navbarleft}}
+    <body onload="getTipoP()">
+        
+<div class="container" id="main" style="width: 70%; margin-top: -30px;">
+    <div class="row">
+        <div class="col-md-12" style="font-size: 22pt; text-align: center;"> 
+            <label>Añadir Persona Vivienda</label>
+        </div> 
+         
+        <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Datos Personales</div>
+
+                        </div>  
+
+                        <div class="panel-body" >
+                            <form id="signupform" class="form-horizontal" role="form" action="/registerP" method="POST">
+                                
+                                {{{ifm message}}}
+
+                                <div class="form-group">
+                                    <label for="cedula" class="col-md-3 control-label">Cedula</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cedula">
+                                    </div>
+                                </div> 
+                                   
+                                <div class="form-group">
+                                    <label for="firstname" class="col-md-3 control-label">Nombre</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="firstname" placeholder="Nombre" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname" class="col-md-3 control-label">Apellido</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="lastname" placeholder="Apellido" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edad" class="col-md-3 control-label">Edad</label>
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" name="edad" placeholder="Edad" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipoper" class="col-md-3 control-label">Tipo Persona</label>
+                                    <div class="col-md-9">
+                                        <select style="height: 33px;" class="form-control" id="tipoper" name = "tipoper" required>
+                                            <option value="#"  selected disabled>--Selecione Opcion--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label for="numcasa" class="col-md-3 control-label"># Casa</label>
+                                    <div class="col-md-9">
+                                        <select style="height: 33px;" class="form-control" id="numcasa" name = "numcasa" required>
+                                            <option value="#"  selected disabled>--Selecione Opcion--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechacom" class="col-md-3 control-label">Fecha Entrada</label>
+                                    <div class="col-md-9">
+                                        <input type="date" class="form-control" name="fechaen" required>
+                                    </div>
+                                </div>
+                               
+                                    
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-success"  disabled><i class="icon-hand-right"></i> &nbsp Registrarse</button> 
+                                    </div>
+                                </div>                  
+                        </div>
+    
+        </div>
+   <div class="row">
+        <div style="font-size: 16pt;box-sizing: border-box;display: inline-block; margin-left: 150px; text-align: center; margin-top: -10px; margin-bottom: 70px;" >
+            <div>
+                <label> Captura de Imagen <i class="fa fa-camera"></i></label>
+            </div>
+            <div style="border: 1px solid black; background-color: #e0e0e0; padding: 2px; ">
+                <video src="" id="video" width="450" height="330" style="margin-top: 10px;margin-bottom: 1px;"></video>
+                <div class="table-responsive" style=" background-color: #57575705; padding: 3px; height: 100px; display: flex; max-width: 450px;"> 
+                    <table  id="carrusel" class="botom:0px">
+
+                    </table>
+                </div>
+            </div>
+            <button id="boton" type="button" class="btn btn-primary" onclick="powercam()"><i class="icon-hand-right"  ></i> &nbsp Prender Camara</button> 
+            <button id="boton1" type="button" class="btn btn-success" onclick="takepicture()" disabled><i class="icon-hand-right"  ></i> &nbsp Capturar</button> 
+        </div> 
+    </div>
+    <input type="text" id="arregloFotos" name="arregloFotos" style="display: none;">
+    </form>
+{{> footer}}

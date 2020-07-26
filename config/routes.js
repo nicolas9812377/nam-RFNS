@@ -64,6 +64,13 @@ module.exports = (app) => {
             pagina: 'Registro Personas',
         });
     });
+
+    app.get('/addPersonV', verificaToken, (req, res) => {
+        res.render('addPersonV', {
+            name,
+            pagina: 'Añadir Persona Vivienda',
+        });
+    });
     //experimental
     /*
     const fs = require('fs');

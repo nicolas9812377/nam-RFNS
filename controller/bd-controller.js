@@ -63,18 +63,71 @@ const registerP = async(req, res) => {
         //axios.get(`http://4dfb55755cfc.ngrok.io/?id_persona=${ip.rows[0].max}`);
         axios.get(`https://nam-reconocimientofacial.azurewebsites.net/?id_persona=${ip.rows[0].max}`);
 
-        return res.render('registerPerson', {
+        return res.render('addPersonV', {
             name: 'Conjunto Residencial "Bosques de Quitumbe IV"',
             pagina: 'Registro Personas',
             message: 'Registrado Exitosamente'
         });
     } else {
-        return res.render('registerPerson', {
+        return res.render('addPersonV', {
             name: 'Conjunto Residencial "Bosques de Quitumbe IV"',
             pagina: 'Registro Personas',
             message: 'Usuario ya registrado'
         });
     }
+}
+
+const registerPs = async(req, res) => {
+    let { cedula, firstname, lastname, edad, tipoper, numcasa, fechaen, arregloFotos } = req.body;
+    arreglo = arregloFotos.split(',data:image/png;base64,')
+        /*Solucion para devolucion en string y no vector */
+    if (arreglo.length == 1) {
+        const { rowCount } = await pool.query('select * from persona where cedula_persona = $1 ', [cedula]);
+        if (rowCount === 0) {
+            const resp = await pool.query('insert into persona (id_tipo_persona, cedula_persona, nombres_persona, apellidos_persona, edad_persona, entrada) values($1,$2,$3,$4,$5,$6)', [tipoper, cedula, firstname, lastname, edad, fechaen]);
+            const itv = await pool.query('select * from vivienda where num_vivienda = $1', [numcasa]);
+            const ip = await pool.query('select max(id_persona) from persona');
+            const resp1 = await pool.query('insert into habitante_vivienda (num_vivienda, id_tipo_vivienda, id_persona, id_tipo_persona, id_estado_acceso) values($1,$2,$3,$4,$5)', [numcasa, itv.rows[0].id_tipo_vivienda, ip.rows[0].max, tipoper, 1]);
+            const r = await pool.query('insert into fotos values($1,$2,$3)', [ip.rows[0].max, tipoper, arreglo[0]]);
+            axios.get(`https://nam-reconocimientofacial.azurewebsites.net/?id_persona=${ip.rows[0].max}`);
+        } else {
+            return res.render('registerPerson', {
+                name: 'Conjunto Residencial "Bosques de Quitumbe IV"',
+                pagina: 'Registro Personas',
+                message: 'Usuario ya registrado'
+            });
+        }
+    } else {
+        /* -- */
+        for (let i = 0; i < arreglo.length; i++) {
+            const { rowCount } = await pool.query('select * from persona where cedula_persona = $1 ', [cedula[i]]);
+            if (rowCount === 0) {
+                const resp = await pool.query('insert into persona (id_tipo_persona, cedula_persona, nombres_persona, apellidos_persona, edad_persona, entrada) values($1,$2,$3,$4,$5,$6)', [tipoper, cedula[i], firstname[i], lastname[i], edad[i], fechaen]);
+                const itv = await pool.query('select * from vivienda where num_vivienda = $1', [numcasa]);
+                const ip = await pool.query('select max(id_persona) from persona');
+                const resp1 = await pool.query('insert into habitante_vivienda (num_vivienda, id_tipo_vivienda, id_persona, id_tipo_persona, id_estado_acceso) values($1,$2,$3,$4,$5)', [numcasa, itv.rows[0].id_tipo_vivienda, ip.rows[0].max, tipoper, 1]);
+                const r = await pool.query('insert into fotos values($1,$2,$3)', [ip.rows[0].max, tipoper, `data:image/png;base64,${arreglo[i]}`]);
+                axios.get(`https://nam-reconocimientofacial.azurewebsites.net/?id_persona=${ip.rows[0].max}`);
+            } else {
+                return res.render('registerPerson', {
+                    name: 'Conjunto Residencial "Bosques de Quitumbe IV"',
+                    pagina: 'Registro Personas',
+                    message: 'Usuario ya registrado'
+                });
+            }
+        }
+    }
+    if (tipoper == 1) {
+        const est = await pool.query('update vivienda set estado_habitante_vivienda = $1 where num_vivienda = $2 ', ['Ocupada', numcasa]);
+    } else if (tipoper == 2) {
+        const est = await pool.query('update vivienda set estado_habitante_vivienda = $1 where num_vivienda = $2 ', ['Arrendada', numcasa]);
+    }
+
+    return res.render('registerPerson', {
+        name: 'Conjunto Residencial "Bosques de Quitumbe IV"',
+        pagina: 'Registro Personas',
+        message: 'Registrado Exitosamente'
+    });
 }
 
 const registerC = async(req, res) => {
@@ -161,4 +214,4 @@ const updateP = async(req, res) => {
 }
 
 
-module.exports = { loginA, registerA, updateA, registerRA, updateD, registerP, updateP, registerC };
+module.exports = { loginA, registerA, updateA, registerRA, updateD, registerP, updateP, registerC, registerPs };

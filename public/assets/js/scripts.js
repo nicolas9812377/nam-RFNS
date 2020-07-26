@@ -79,7 +79,8 @@ function tablaRP() {
             { "mData": "mes_pago" },
             { "mData": "anio_pago" },
             { "mData": "estado" }
-        ]
+        ],
+
     });
     getNV();
 }
@@ -181,11 +182,11 @@ function getPE() {
         data: { estado: `habitante_vivienda, persona where habitante_vivienda.id_persona = persona.id_persona and num_vivienda = '${$('#numcasa').val()}' ` },
         type: 'POST',
         success: function(msg) {
-            let resp = '';
+            let resp = '<option value="#"  selected disabled>--Selecione Opcion--</option>';
             msg.forEach(element => {
                 resp += `<option value="${element.id_persona}">${element.nombres_persona} ${element.apellidos_persona}</option>`
             });
-            $('#perenc').append(resp);
+            $('#perenc').html(resp);
             $('#perenc').attr("disabled", false);
             $('#mes').attr("disabled", false);
             $('#anio').attr("disabled", false);

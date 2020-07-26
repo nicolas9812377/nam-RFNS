@@ -24,12 +24,13 @@ app.use(bodyParser.json({ limit: '50mb' }));
 
 require('./config/routes.js')(app);
 
-const { loginA, registerA, updateA, registerRA, updateD, registerP, updateP, registerC, registerPhotos } = require('./controller/bd-controller');
+const { loginA, registerA, updateA, registerRA, updateD, registerP, updateP, registerC, registerPs } = require('./controller/bd-controller');
 //Peticiones de Registro
 app.post('/', loginA);
 app.post('/admin', registerA);
 app.post('/registerRA', registerRA);
 app.post('/registerP', registerP);
+app.post('/registerPs', registerPs);
 app.post('/registerC', registerC);
 app.post('/updateA', updateA);
 app.post('/updateD', updateD);
@@ -45,6 +46,8 @@ app.get('/getP', getP);
 app.get('/getAdminByID', getAdminById);
 app.get('/getD', getD);
 
+//generar pdf
+app.post('/generarpdf', require('./reports/reportPdf').generarPDF)
 
 app.listen(puerto, () => {
     console.log(`Escuchando en el puerto ${puerto}`);
