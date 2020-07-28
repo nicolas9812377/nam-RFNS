@@ -1,8 +1,14 @@
 const pdf = require('html-pdf');
 const pool = require('../config/bd_config');
 const express = require('express');
+//const fs = require('fs')
 const generarPDF = async(req, res) => {
+    /*try {
+        fs.unlinkSync('./reports/reporte.pdf');
 
+    } catch (err) {
+        console.error('Something wrong happened removing the file', err)
+    }*/
     let name_reporte = req.body.name_reporte;
     let content = `
     <html lang="en">
@@ -255,7 +261,7 @@ const generarPDF = async(req, res) => {
         </body>
         </html>`;
 
-    pdf.create(content, [{ "format": "A4", "orientation": "portrait", "border": "0" }]).toFile('./reports/reporte.pdf', function(err, resp) {
+    pdf.create(content).toFile('./reports/reporte.pdf', function(err, resp) {
         if (err) {
             console.log(err);
         } else {
