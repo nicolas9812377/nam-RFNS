@@ -119,6 +119,7 @@ function tablaD() {
 
         window.location.href = "#main";
     });
+    getNV();
 }
 
 function getTipoP() {
@@ -150,6 +151,7 @@ function getNV() {
                 resp += `<option value="${element.num_vivienda}">${element.num_vivienda}</option>`
             });
             $('#numcasa').append(resp);
+            $('#numcasa1').append(resp);
         },
         error: function(err) { console.log(err); }
     });

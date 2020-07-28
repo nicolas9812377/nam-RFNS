@@ -177,7 +177,14 @@ const generarPDF = async(req, res) => {
 
 
     if (name_reporte === 'Alicuotas') {
-        const resp = await pool.queryG('cobros, persona where persona.id_persona = cobros.id_persona');
+        let where = '';
+        if (req.body.numcasa !== 'all') {
+            where += ` and num_vivienda='${req.body.numcasa}'`;
+        }
+        if (req.body.estado !== 'all') {
+            where += ` and estado='${req.body.estado}'`;
+        }
+        const resp = await pool.queryG(`cobros, persona where persona.id_persona = cobros.id_persona ${where}`);
         content += `
         <tr>
             <th> # </th> 
@@ -205,7 +212,36 @@ const generarPDF = async(req, res) => {
         <td class="grand total"> $${acum} </td> 
         </tr>`;
     } else if (name_reporte === 'Habitantes') {
-        const resp = pool.queryG('');
+        let where = '';
+        if (req.body.numcasa !== 'all') {
+            where += ` and habitante_vivienda.num_vivienda='${req.body.numcasa}' `;
+        }
+        if (req.body.estado !== 'all') {
+            where += ` and estado_acceso.id_estado_acceso=${req.body.estado} `;
+        }
+        if (req.body.estadov !== 'all') {
+            where += ` and vivienda.estado_habitante_vivienda='${req.body.estadov}' `;
+        }
+        const { rows } = await pool.pool.query(`select habitante_vivienda.num_vivienda, persona.cedula_persona, persona.nombres_persona, persona.apellidos_persona,estado_acceso.descr_estado_acceso,persona.entrada,persona.fecha_salida,vivienda.estado_habitante_vivienda from habitante_vivienda, persona,estado_acceso,vivienda where habitante_vivienda.id_persona = persona.id_persona and estado_acceso.id_estado_acceso = habitante_vivienda.id_estado_acceso and habitante_vivienda.num_vivienda = vivienda.num_vivienda ${where} group by habitante_vivienda.num_vivienda, persona.cedula_persona, persona.nombres_persona, persona.apellidos_persona,estado_acceso.descr_estado_acceso,persona.entrada,persona.fecha_salida,vivienda.estado_habitante_vivienda`);
+        content += `
+        <tr>
+            <th> # VIVIENDA </th>
+            <th> CEDULA </th>
+            <th> PERSONA </th>
+            <th> F. ENTRADA </th>
+            <th> F. SALIDA </th>
+            <th> E. PERSONA </th>
+            <th> E. VIVIENDA </th>
+        </tr>
+        </thead> 
+        <tbody>
+        `;
+        rows.forEach(element => {
+            let fechaentra = element.entrada.toISOString().substring(0, 10);
+            let fechasalida = element.entrada.toISOString().substring(0, 10);
+            content += `<tr><td class="unit"> ${element.num_vivienda}</td><td class="unit"> ${element.cedula_persona}</td> <td class="unit"> ${element.nombres_persona} ${element.apellidos_persona} </td> <td class="unit">${fechaentra} </td> <td class="unit"> ${fechasalida} </td> <td class="unit"> ${element.descr_estado_acceso} </td><td class="unit"> ${element.estado_habitante_vivienda} </td>  </tr> `;
+
+        });
     }
 
 
