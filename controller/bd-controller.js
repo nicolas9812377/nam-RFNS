@@ -106,7 +106,11 @@ const registerPs = async(req, res) => {
                 const itv = await pool.query('select * from vivienda where num_vivienda = $1', [numcasa]);
                 const ip = await pool.query('select max(id_persona) from persona');
                 const resp1 = await pool.query('insert into habitante_vivienda (num_vivienda, id_tipo_vivienda, id_persona, id_tipo_persona, id_estado_acceso) values($1,$2,$3,$4,$5)', [numcasa, itv.rows[0].id_tipo_vivienda, ip.rows[0].max, tipoper, 1]);
-                const r = await pool.query('insert into fotos values($1,$2,$3)', [ip.rows[0].max, tipoper, `data:image/png;base64,${arreglo[i]}`]);
+                if (i == 0) {
+                    const r = await pool.query('insert into fotos values($1,$2,$3)', [ip.rows[0].max, tipoper, arreglo[0]]);
+                } else {
+                    const r = await pool.query('insert into fotos values($1,$2,$3)', [ip.rows[0].max, tipoper, `data:image/png;base64,${arreglo[i]}`]);
+                }
                 axios.get(`https://nam-reconocimientofacial.azurewebsites.net/?id_persona=${ip.rows[0].max}`);
             } else {
                 return res.render('registerPerson', {
