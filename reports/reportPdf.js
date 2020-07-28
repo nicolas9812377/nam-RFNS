@@ -255,7 +255,7 @@ const generarPDF = async(req, res) => {
         </body>
         </html>`;
 
-    pdf.create(content).toFile('./reports/reporte.pdf', function(err, resp) {
+    await pdf.create(content).toFile('./reports/reporte.pdf', function(err, resp) {
         if (err) {
             console.log(err);
         } else {
