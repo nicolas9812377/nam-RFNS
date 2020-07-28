@@ -255,7 +255,7 @@ const generarPDF = async(req, res) => {
         </body>
         </html>`;
 
-    await pdf.create(content, [{ "format": "A4", "orientation": "portrait", "border": "0" }]).toFile('./reports/reporte.pdf', function(err, resp) {
+    pdf.create(content, [{ "format": "A4", "orientation": "portrait", "border": "0" }]).toFile('./reports/reporte.pdf', function(err, resp) {
         if (err) {
             console.log(err);
         } else {
