@@ -140,7 +140,7 @@ const registerC = async(req, res) => {
     if (rowCount === 0) {
         const sidp = await pool.query('select id_tipo_persona from persona where id_persona = $1', [perenc]);
         const itv = await pool.query('select id_tipo_vivienda from vivienda where num_vivienda = $1', [numcasa]);
-        const resp = await pool.query("INSERT INTO cobros(num_vivienda, id_tipo_vivienda, id_persona, id_tipo_persona, cant_pago, fecha_pago, mes_pago, anio_pago, estado) VALUES ($1,$2,$3,$4,$5,to_date($6, 'DD/MM/YYYY'),$7,$8,$9)", [numcasa, itv.rows[0].id_tipo_vivienda, perenc, sidp.rows[0].id_tipo_persona, monto, new Date().toLocaleDateString(), mes, anio, estado]);
+        const resp = await pool.query("INSERT INTO cobros(num_vivienda, id_tipo_vivienda, id_persona, id_tipo_persona, cant_pago, fecha_pago, mes_pago, anio_pago, estado) VALUES ($1,$2,$3,$4,$5,to_date($6, 'DD-MM-YYYY'),$7,$8,$9)", [numcasa, itv.rows[0].id_tipo_vivienda, perenc, sidp.rows[0].id_tipo_persona, monto, new Date().toLocaleDateString(), mes, anio, estado]);
         res.redirect('/registerPayments');
     } else {
         res.render('registerPayments', {
